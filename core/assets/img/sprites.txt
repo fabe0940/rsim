@@ -1,4 +1,4 @@
-10
+17
 1 img/log.png
 2 img/stone.png
 3 img/brick.png
@@ -9,3 +9,10 @@
 8 img/sell.png
 9 img/buy.png
 10 img/interface.png
+11 img/alexandria.png
+12 img/bablylon.png
+13 img/ephesos.png
+14 img/gizah.png
+15 img/halikarnassos.png
+16 img/olympia.png
+17 img/rhodos.png

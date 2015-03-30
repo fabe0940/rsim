@@ -11,11 +11,19 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import cs328.fabe0940.hw4.model.GameManager;
 
 public class Display {
 	private static final int SELL = 8;
 	private static final int BUY = 9;
 	private static final int INTERFACE = 10;
+	private static final int ALEXANDRIA = 11;
+	private static final int BABYLON = 12;
+	private static final int EPHESOS = 13;
+	private static final int GIZAH = 14;
+	private static final int HALIKARNASSOS = 15;
+	private static final int OLYMPIA = 16;
+	private static final int RHODOS = 17;
 
 	private SpriteBatch batch;
 	private Sprite sprite;
@@ -86,6 +94,11 @@ public class Display {
 	}
 
 	public void render() {
+		int id;
+		GameManager gm;
+
+		gm = GameManager.instance;
+
 		Gdx.gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -98,7 +111,29 @@ public class Display {
 		sprite.setPosition(0, 0);
 		sprite.draw(batch);
 
-		font.draw(batch, "TEST", 10, 40);
+		id = -1;
+
+		if(gm.cityManager.current.name.equals("Alexandria")) {
+			id = ALEXANDRIA;
+		} else if(gm.cityManager.current.name.equals("Babylon")) {
+			id = BABYLON;
+		} else if(gm.cityManager.current.name.equals("Ephesos")) {
+			id = EPHESOS;
+		} else if(gm.cityManager.current.name.equals("Gizah")) {
+			id = GIZAH;
+		} else if(gm.cityManager.current.name.equals("Halikarnassos")) {
+			id = HALIKARNASSOS;
+		} else if(gm.cityManager.current.name.equals("Olympia")) {
+			id = OLYMPIA;
+		} else if(gm.cityManager.current.name.equals("Rhodos")) {
+			id = RHODOS;
+		}
+
+		sprite = new Sprite(getTexture(id));
+		sprite.setPosition(0, 200);
+		sprite.draw(batch);
+
+		font.draw(batch, gm.cityManager.current.name, 15, 585);
 
 		batch.end();
 	}
