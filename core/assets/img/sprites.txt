@@ -1,0 +1,11 @@
+10
+1 img/log.png
+2 img/stone.png
+3 img/brick.png
+4 img/ore.png
+5 img/glass.png
+6 img/paper.png
+7 img/cloth.png
+8 img/sell.png
+9 img/buy.png
+10 img/interface.png
