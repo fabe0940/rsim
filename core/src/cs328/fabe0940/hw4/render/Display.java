@@ -4,17 +4,23 @@ import java.util.Map;
 import java.util.HashMap;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
 public class Display {
 	private static final int SELL = 8;
 	private static final int BUY = 9;
 	private static final int INTERFACE = 10;
+
 	private SpriteBatch batch;
 	private Sprite sprite;
+	private BitmapFont font;
+	private FreeTypeFontGenerator fgen;
 	private Map<Integer, String> sprites;
 	private Map<Integer, Texture> textures;
 
@@ -64,6 +70,11 @@ public class Display {
 		batch = new SpriteBatch();
 		sprites = new HashMap<Integer, String>();
 		textures = new HashMap<Integer, Texture>();
+
+		fgen = new FreeTypeFontGenerator(Gdx.files.internal("font/heorot.ttf"));
+		font = fgen.generateFont(30);
+		font.setColor(Color.BLACK);
+
                 
 		loadSprites();
 	}
@@ -86,6 +97,8 @@ public class Display {
 		sprite = new Sprite(getTexture(INTERFACE));
 		sprite.setPosition(0, 0);
 		sprite.draw(batch);
+
+		font.draw(batch, "TEST", 10, 40);
 
 		batch.end();
 	}
