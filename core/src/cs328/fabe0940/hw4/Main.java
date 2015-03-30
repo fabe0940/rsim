@@ -5,14 +5,18 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
+import cs328.fabe0940.hw4.model.*;
 
 public class Main implements ApplicationListener, InputProcessor {
+	private GameManager gm;
 
 	@Override
 	public void create () {
 		Gdx.app.setLogLevel(Application.LOG_INFO);
 		/* Gdx.app.setLogLevel(Application.LOG_DEBUG); */
 		Gdx.input.setInputProcessor(this);
+
+		gm = GameManager.instance;
 	}
 
 	@Override
