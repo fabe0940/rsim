@@ -25,6 +25,14 @@ public class Main implements ApplicationListener, InputProcessor {
 		gm = GameManager.instance;
 		im = InputManager.instance;
 		mm = MessageManager.instance;
+
+		mm.messages.add("Welcome to Traders of the Ancient World!");
+		mm.messages.add("You belong to a noble family in misfortune.");
+		mm.messages.add("Loaned $100, you seek to rebuild a fortune.");
+		mm.messages.add("Make sure you earn enough to repay the load.");
+		mm.messages.add("You will need $1000 after 12 months,");
+		mm.messages.add("Another $1000 after 18 months,");
+		mm.messages.add("and a final $2000 after 24 months.");
 	}
 
 	@Override

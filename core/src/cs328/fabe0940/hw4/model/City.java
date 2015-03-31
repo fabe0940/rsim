@@ -4,8 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 
 public class City {
-	private static final int GROWTH_RATE = 10;
-	private static final int INVENTORY_CAP = 100;
+	private static final int GROWTH_RATE = 3;
+	private static final int INVENTORY_CAP = 30;
 
 	private int production;
 	private int[] inventory;
