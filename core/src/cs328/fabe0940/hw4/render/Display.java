@@ -188,7 +188,7 @@ public class Display {
 			msg = Integer.toString(gm.cityManager.current.price(i));
 			inventoryFont.draw(batch, msg, (100 * (i + 1)) + 40, 140);
 
-			msg = Integer.toString(gm.player.get(i));
+			msg = Integer.toString(gm.cityManager.current.get(i));
 			inventoryFont.draw(batch, msg, (100 * (i + 1)) + 40, 110);
 
 			msg = Integer.toString(gm.player.get(i));

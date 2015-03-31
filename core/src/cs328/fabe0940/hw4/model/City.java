@@ -73,6 +73,10 @@ public class City {
 				inventory[i] -= (int) (Math.random() * diff);
 			}
 		}
+
+		for(i = 0; i < prices.length; i++) {
+			prices[i].update();
+		}
 	}
 
 	public int get(int type) {

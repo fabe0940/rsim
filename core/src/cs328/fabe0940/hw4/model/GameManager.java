@@ -14,13 +14,19 @@ public final class GameManager {
 			throw new IllegalStateException("reinstantiating singleton");
 		}
 
-		turn = 0;
+		turn = 1;
 		cityManager = CityManager.instance;
 		player = new Player();
 	}
 
 	public void update(Input in) {
+		int index;
+
 		if(in != null) {
+
+			index = (int) Math.floor(Math.random() * cityManager.cities.size());
+			cityManager.current = cityManager.cities.get(index);
+
 			cityManager.update();
 
 			turn++;
