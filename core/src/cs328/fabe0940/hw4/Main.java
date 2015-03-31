@@ -11,17 +11,20 @@ import cs328.fabe0940.hw4.render.*;
 
 public class Main implements ApplicationListener, InputProcessor {
 	private GameManager gm;
-	private InputManager in;
+	private InputManager im;
+	private MessageManager mm;
 	private Display screen;
 
 	@Override
 	public void create () {
+		Gdx.app.setLogLevel(Application.LOG_DEBUG);
 		Gdx.input.setInputProcessor(this);
 
 		screen = new Display();
 
 		gm = GameManager.instance;
-		in = InputManager.instance;
+		im = InputManager.instance;
+		mm = MessageManager.instance;
 	}
 
 	@Override
@@ -30,6 +33,7 @@ public class Main implements ApplicationListener, InputProcessor {
 
 	@Override
 	public void render() {
+		gm.update(im.consume());
 		screen.render();
 	}
 
@@ -62,17 +66,19 @@ public class Main implements ApplicationListener, InputProcessor {
 
 	@Override
 	public boolean touchDown (int x, int y, int ptr, int btn) {
-		return false;
+		im.addClick(x, y);
+
+		return true;
 	}
 
 	@Override
 	public boolean touchUp (int x, int y, int ptr, int btn) {
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean touchDragged (int x, int y, int ptr) {
-		return false;
+		return true;
 	}
 
 	@Override

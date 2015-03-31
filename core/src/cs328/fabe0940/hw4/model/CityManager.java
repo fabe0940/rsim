@@ -38,7 +38,7 @@ public final class CityManager {
 			cities.add(c);
 		}
 
-		i = (int) Math.floor(Math.random() * (cities.size() + 1));
+		i = (int) Math.floor(Math.random() * cities.size());
 		current = cities.get(i);
 	}
 

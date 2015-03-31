@@ -11,19 +11,21 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import cs328.fabe0940.hw4.input.MessageManager;
 import cs328.fabe0940.hw4.model.GameManager;
 
 public class Display {
 	private static final int SELL = 8;
 	private static final int BUY = 9;
-	private static final int INTERFACE = 10;
-	private static final int ALEXANDRIA = 11;
-	private static final int BABYLON = 12;
-	private static final int EPHESOS = 13;
-	private static final int GIZAH = 14;
-	private static final int HALIKARNASSOS = 15;
-	private static final int OLYMPIA = 16;
-	private static final int RHODOS = 17;
+	private static final int ALEXANDRIA = 10;
+	private static final int BABYLON = 11;
+	private static final int EPHESOS = 12;
+	private static final int GIZAH = 13;
+	private static final int HALIKARNASSOS = 14;
+	private static final int OLYMPIA = 15;
+	private static final int RHODOS = 16;
+	private static final int INTERFACE = 17;
+	private static final int POPUP = 18;
 
 	private SpriteBatch batch;
 	private Sprite sprite;
@@ -95,9 +97,12 @@ public class Display {
 
 	public void render() {
 		int id;
+		String msg;
 		GameManager gm;
+		MessageManager mm;
 
 		gm = GameManager.instance;
+		mm = MessageManager.instance;
 
 		Gdx.gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -134,6 +139,15 @@ public class Display {
 		sprite.draw(batch);
 
 		font.draw(batch, gm.cityManager.current.name, 15, 585);
+
+		if(mm.instance.messages.size() > 0) {
+			sprite = new Sprite(getTexture(POPUP));
+			sprite.setPosition(0, 0);
+			sprite.draw(batch);
+
+			msg = mm.instance.messages.get(0);
+			font.draw(batch, msg, 165, 435);
+		}
 
 		batch.end();
 	}

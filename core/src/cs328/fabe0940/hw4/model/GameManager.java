@@ -1,5 +1,7 @@
 package cs328.fabe0940.hw4.model;
 
+import cs328.fabe0940.hw4.input.Input;
+
 public final class GameManager {
 	public static final GameManager instance = new GameManager();
 
@@ -15,7 +17,9 @@ public final class GameManager {
 		player = new Player();
 	}
 
-	public void update() {
-		cityManager.update();
+	public void update(Input in) {
+		if(in != null) {
+			cityManager.update();
+		}
 	}
 }
