@@ -23,13 +23,16 @@ public final class GameManager {
 		int index;
 
 		if(in != null) {
-
-			index = (int) Math.floor(Math.random() * cityManager.cities.size());
-			cityManager.current = cityManager.cities.get(index);
-
-			cityManager.update();
-
-			turn++;
+			switch(in.action) {
+				case Input.BUY:
+					player.buy(cityManager.current, in.resource, in.size);
+					break;
+				case Input.SELL:
+					player.sell(cityManager.current, in.resource, in.size);
+					break;
+				default:
+					throw new IndexOutOfBoundsException();
+			}
 		}
 	}
 }

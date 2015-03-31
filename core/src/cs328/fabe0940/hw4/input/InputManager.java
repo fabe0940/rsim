@@ -36,6 +36,8 @@ public final class InputManager {
 	}
 
 	public Input consume() {
+		int action;
+		int type;
 		Input res;
 		Position pos;
 
@@ -43,7 +45,17 @@ public final class InputManager {
 
 		if(consumable()) {
 			pos = clicks.remove(0);
-			res = new Input(Input.BUY, Resources.WOOD, 1);
+
+			if(pos.x >= 600 && pos.y >= 120 && pos.y <= 400) {
+				mm.messages.add("Travel action");
+			}
+
+			if(pos.x >= 100 && pos.y >= 550 && pos.y <= 580) {
+				action = (pos.x % 100) < 50 ? Input.BUY : Input.SELL;
+				type = (int) ((pos.x - 100) / 100);
+
+				res = new Input(action, type, 1);
+			}
 		}
 
 		return res;
