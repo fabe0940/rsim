@@ -5,6 +5,7 @@ import java.lang.Math;
 public class Stat {
 	private int val;
 	private int mod;
+	private int modCurrent;
 
 	public Stat() {
 		this(0, 0);
@@ -18,6 +19,8 @@ public class Stat {
 	public Stat(Stat s) {
 		val = s.getVal();
 		mod = s.getMod();
+
+		update();
 	}
 
 	public int getVal() {
@@ -28,12 +31,11 @@ public class Stat {
 		return mod;
 	}
 
+	public void update() {
+		modCurrent = (int) Math.floor(Math.random() * (mod + 1));
+	}
+
 	public int get() {
-		int res;
-
-		res = val;
-		res += Math.floor(Math.random() * (mod + 1));
-
-		return res;
+		return val + modCurrent;
 	}
 }

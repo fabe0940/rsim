@@ -19,6 +19,7 @@ public final class CityManager {
 		cities = new ArrayList<City>();
 
 		loadFromFile("city/list.txt");
+		update();
 	}
 
 	public void loadFromFile(String fname) {

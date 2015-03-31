@@ -12,7 +12,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import cs328.fabe0940.hw4.input.MessageManager;
-import cs328.fabe0940.hw4.model.GameManager;
+import cs328.fabe0940.hw4.model.*;
 
 public class Display {
 	private static final int SELL = 8;
@@ -29,8 +29,12 @@ public class Display {
 
 	private SpriteBatch batch;
 	private Sprite sprite;
-	private BitmapFont font;
-	private FreeTypeFontGenerator fgen;
+	private BitmapFont mainFont;
+	private BitmapFont inventoryFont;
+	private BitmapFont travelFont;
+	private BitmapFont titleFont;
+	private FreeTypeFontGenerator heorotGen;
+	private FreeTypeFontGenerator marathonGen;
 	private Map<Integer, String> sprites;
 	private Map<Integer, Texture> textures;
 
@@ -77,14 +81,29 @@ public class Display {
 	}
 
 	public Display() {
+		String fname;
+
 		batch = new SpriteBatch();
 		sprites = new HashMap<Integer, String>();
 		textures = new HashMap<Integer, Texture>();
 
-		fgen = new FreeTypeFontGenerator(Gdx.files.internal("font/heorot.ttf"));
-		font = fgen.generateFont(30);
-		font.setColor(Color.BLACK);
+		fname = "font/heorot.ttf";
+		heorotGen = new FreeTypeFontGenerator(Gdx.files.internal(fname));
 
+		fname = "font/marathon.ttf";
+		marathonGen = new FreeTypeFontGenerator(Gdx.files.internal(fname));
+
+		mainFont = marathonGen.generateFont(25);
+		mainFont.setColor(Color.BLACK);
+
+		inventoryFont = marathonGen.generateFont(30);
+		inventoryFont.setColor(Color.BLACK);
+
+		travelFont = marathonGen.generateFont(35);
+		travelFont.setColor(Color.BLACK);
+
+		titleFont = marathonGen.generateFont(45);
+		titleFont.setColor(Color.BLACK);
                 
 		loadSprites();
 	}
@@ -96,6 +115,7 @@ public class Display {
 	}
 
 	public void render() {
+		int i;
 		int id;
 		String msg;
 		GameManager gm;
@@ -138,7 +158,50 @@ public class Display {
 		sprite.setPosition(0, 200);
 		sprite.draw(batch);
 
-		font.draw(batch, gm.cityManager.current.name, 15, 585);
+		msg = gm.cityManager.current.name;
+		titleFont.draw(batch, msg, 15, 582);
+
+		msg = new String("Month " + gm.turn);
+		titleFont.draw(batch, msg, 365, 582);
+
+		msg = new String("$" + gm.player.money());
+		titleFont.draw(batch, msg, 655, 582);
+
+		titleFont.draw(batch, "Travel To", 635, 535);
+		travelFont.draw(batch, "Alexandria", 615, 480);
+		travelFont.draw(batch, "Babylon", 615, 440);
+		travelFont.draw(batch, "Ephesos", 615, 400);
+		travelFont.draw(batch, "Gizah", 615, 360);
+		travelFont.draw(batch, "Halikarnassos", 615, 320);
+		travelFont.draw(batch, "Olympia", 615, 280);
+		travelFont.draw(batch, "Rhodos", 615, 240);
+
+		mainFont.draw(batch, "Price", 20, 135);
+		mainFont.draw(batch, "Avalable", 20, 105);
+		mainFont.draw(batch, "Owned", 20, 75);
+
+		for(i = 0; i < Resources.NUM; i++) {
+			sprite = new Sprite(getTexture(i + 1));
+			sprite.setPosition((100 * (i + 1)) + 35, 150);
+			sprite.draw(batch);
+
+			msg = Integer.toString(gm.cityManager.current.price(i));
+			inventoryFont.draw(batch, msg, (100 * (i + 1)) + 40, 140);
+
+			msg = Integer.toString(gm.player.get(i));
+			inventoryFont.draw(batch, msg, (100 * (i + 1)) + 40, 110);
+
+			msg = Integer.toString(gm.player.get(i));
+			inventoryFont.draw(batch, msg, (100 * (i + 1)) + 40, 80);
+
+			sprite = new Sprite(getTexture(BUY));
+			sprite.setPosition((100 * (i + 1)) + 15, 20);
+			sprite.draw(batch);
+
+			sprite = new Sprite(getTexture(SELL));
+			sprite.setPosition((100 * (i + 1)) + 55, 20);
+			sprite.draw(batch);
+		}
 
 		if(mm.instance.messages.size() > 0) {
 			sprite = new Sprite(getTexture(POPUP));
@@ -146,7 +209,7 @@ public class Display {
 			sprite.draw(batch);
 
 			msg = mm.instance.messages.get(0);
-			font.draw(batch, msg, 165, 435);
+			titleFont.draw(batch, msg, 165, 435);
 		}
 
 		batch.end();

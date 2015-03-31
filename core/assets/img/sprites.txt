@@ -9,7 +9,7 @@
 8 img/sell.png
 9 img/buy.png
 10 img/alexandria.png
-11 img/bablylon.png
+11 img/babylon.png
 12 img/ephesos.png
 13 img/gizah.png
 14 img/halikarnassos.png

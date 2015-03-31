@@ -28,6 +28,7 @@ public class City {
 		}
 
 		loadFromFile(fname);
+		update();
 	}
 
 	public void loadFromFile(String fname) {
@@ -72,6 +73,14 @@ public class City {
 				inventory[i] -= (int) (Math.random() * diff);
 			}
 		}
+	}
+
+	public int get(int type) {
+		return inventory[type];
+	}
+
+	public int price(int type) {
+		return prices[type].get();
 	}
 
 	public int buy(int type, int size) {

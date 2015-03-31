@@ -18,6 +18,14 @@ public class Player {
 		}
 	}
 
+	public int money() {
+		return money;
+	}
+
+	public int get(int type) {
+		return inventory[type];
+	}
+
 	public void buy(City c, int type, int size) {
 		int i;
 		int free;
