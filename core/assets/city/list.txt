@@ -1,0 +1,7 @@
+city/alexandria.txt
+city/babylon.txt
+city/ephesos.txt
+city/gizah.txt
+city/halikarnassos.txt
+city/olympia.txt
+city/rhodos.txt
