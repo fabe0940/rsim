@@ -2,6 +2,7 @@ package cs328.fabe0940.hw4.input;
 
 import java.util.List;
 import java.util.ArrayList;
+import com.badlogic.gdx.Gdx;
 import cs328.fabe0940.hw4.model.GameManager;
 import cs328.fabe0940.hw4.model.Resources;
 import cs328.fabe0940.hw4.input.MessageManager;
@@ -28,10 +29,16 @@ public final class InputManager {
 	}
 
 	public void addClick(int x, int y) {
+		String msg;
+
 		if(mm.messages.size() == 0) {
 			clicks.add(new Position(x, y));
 		} else {
-			mm.messages.remove(0);
+			msg = mm.messages.remove(0);
+
+			if(msg.equals("You couldn't pay - GAME OVER")) {
+				Gdx.app.exit();
+			}
 		}
 	}
 

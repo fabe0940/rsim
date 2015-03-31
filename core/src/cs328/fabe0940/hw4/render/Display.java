@@ -164,8 +164,8 @@ public class Display {
 		msg = new String("Month " + gm.turn);
 		titleFont.draw(batch, msg, 365, 582);
 
-		msg = new String("$" + gm.player.money());
-		titleFont.draw(batch, msg, 655, 582);
+		msg = new String("$" + gm.player.money() + " / " + gm.goal);
+		titleFont.draw(batch, msg, 615, 582);
 
 		titleFont.draw(batch, "Travel To", 635, 535);
 
@@ -206,7 +206,7 @@ public class Display {
 			sprite.draw(batch);
 
 			msg = mm.instance.messages.get(0);
-			titleFont.draw(batch, msg, 165, 435);
+			inventoryFont.draw(batch, msg, 165, 310);
 		}
 
 		batch.end();

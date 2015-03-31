@@ -1,5 +1,7 @@
 package cs328.fabe0940.hw4.model;
 
+import cs328.fabe0940.hw4.input.MessageManager;
+
 public class Player {
 	private static final int INVENTORY_CAP = 100;
 	private static final int INITIAL_MONEY = 100;
@@ -18,6 +20,10 @@ public class Player {
 		}
 	}
 
+	public void pay(int val) {
+		money -= val;
+	}
+
 	public int money() {
 		return money;
 	}
@@ -30,6 +36,9 @@ public class Player {
 		int i;
 		int free;
 		int cost;
+		MessageManager mm;
+
+		mm = MessageManager.instance;
 
 		free = 0;
 		for(i = 0; i < Resources.NUM; i++) {
@@ -44,6 +53,8 @@ public class Player {
 				inventory[type] += size;
 				money -= cost;
 			}
+		} else {
+			mm.messages.add("Your inventory is full!");
 		}
 	}
 
