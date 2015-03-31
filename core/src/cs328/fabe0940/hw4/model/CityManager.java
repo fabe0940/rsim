@@ -8,6 +8,8 @@ import com.badlogic.gdx.files.FileHandle;
 public final class CityManager {
 	public static final CityManager instance = new CityManager();
 
+	public String[] names = {"Alexandria", "Babylon", "Ephesos", "Gizah",
+	  "Halikarnassos", "Olympia", "Rhodos"};
 	public List<City> cities;
 	public City current;
 
@@ -51,8 +53,9 @@ public final class CityManager {
 
 	public void setCurrent(String name) {
 		for(City c : cities) {
-			if(c.name == name) {
+			if(c.name.equals(name)) {
 				current = c;
+				break;
 			}
 		}
 	}

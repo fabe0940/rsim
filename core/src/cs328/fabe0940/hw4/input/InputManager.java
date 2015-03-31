@@ -47,10 +47,13 @@ public final class InputManager {
 			pos = clicks.remove(0);
 
 			if(pos.x >= 600 && pos.y >= 120 && pos.y <= 400) {
-				mm.messages.add("Travel action");
+				action = Input.TRAVEL;
+				type = (int) ((pos.y - 120) / 40);
+
+				res = new Input(action, type, 0);
 			}
 
-			if(pos.x >= 100 && pos.y >= 550 && pos.y <= 580) {
+			if(pos.x >= 101 && pos.y >= 550 && pos.y <= 580) {
 				action = (pos.x % 100) < 50 ? Input.BUY : Input.SELL;
 				type = (int) ((pos.x - 100) / 100);
 

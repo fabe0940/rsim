@@ -30,6 +30,11 @@ public final class GameManager {
 				case Input.SELL:
 					player.sell(cityManager.current, in.resource, in.size);
 					break;
+				case Input.TRAVEL:
+					cityManager.setCurrent(cityManager.names[in.resource]);
+					cityManager.update();
+					turn++;
+					break;
 				default:
 					throw new IndexOutOfBoundsException();
 			}

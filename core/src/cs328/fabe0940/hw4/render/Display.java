@@ -168,13 +168,10 @@ public class Display {
 		titleFont.draw(batch, msg, 655, 582);
 
 		titleFont.draw(batch, "Travel To", 635, 535);
-		travelFont.draw(batch, "Alexandria", 615, 480);
-		travelFont.draw(batch, "Babylon", 615, 440);
-		travelFont.draw(batch, "Ephesos", 615, 400);
-		travelFont.draw(batch, "Gizah", 615, 360);
-		travelFont.draw(batch, "Halikarnassos", 615, 320);
-		travelFont.draw(batch, "Olympia", 615, 280);
-		travelFont.draw(batch, "Rhodos", 615, 240);
+
+		for(i = 0; i < gm.cityManager.names.length; i++) {
+			travelFont.draw(batch, gm.cityManager.names[i], 615, 480 - (40 * i));
+		}
 
 		mainFont.draw(batch, "Price", 20, 135);
 		mainFont.draw(batch, "Avalable", 20, 105);
